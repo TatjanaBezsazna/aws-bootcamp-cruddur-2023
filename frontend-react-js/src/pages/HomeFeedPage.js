@@ -6,9 +6,7 @@ import DesktopSidebar     from '../components/DesktopSidebar';
 import ActivityFeed from '../components/ActivityFeed';
 import ActivityForm from '../components/ActivityForm';
 import ReplyForm from '../components/ReplyForm';
-
-// [TODO] Authenication
-import Cookies from 'js-cookie'
+import { useAuth } from "react-oidc-context";
 
 export default function HomeFeedPage() {
   const [activities, setActivities] = React.useState([]);
@@ -17,6 +15,7 @@ export default function HomeFeedPage() {
   const [replyActivity, setReplyActivity] = React.useState({});
   const [user, setUser] = React.useState(null);
   const dataFetchedRef = React.useRef(false);
+  const auth = useAuth();
 
   const loadData = async () => {
     try {
@@ -38,10 +37,10 @@ export default function HomeFeedPage() {
   const checkAuth = async () => {
     console.log('checkAuth')
     // [TODO] Authenication
-    if (Cookies.get('user.logged_in')) {
+    if (auth.isAuthenticated) {
       setUser({
-        display_name: Cookies.get('user.name'),
-        handle: Cookies.get('user.username')
+        display_name: auth.user?.profile.name,
+        handle: auth.user?.profile.email
       })
     }
   };
