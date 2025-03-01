@@ -21,6 +21,9 @@ services:
   frontend-react-js:
     environment:
       REACT_APP_BACKEND_URL: "https://4567-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}"
+      REACT_COGNITO_AUTHORITY: "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_1f24LC1Lb"
+      REACT_COGNITO_CLIENT_ID: "${REACT_COGNITO_CLIENT_ID}"
+      REACT_COGNITO_REDIRECT_URL: "${REACT_COGNITO_REDIRECT_URL}"
     build: ./frontend-react-js
     ports:
       - "3000:3000"
