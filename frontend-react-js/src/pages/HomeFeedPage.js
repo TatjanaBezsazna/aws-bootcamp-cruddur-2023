@@ -16,6 +16,12 @@ export default function HomeFeedPage() {
   const [user, setUser] = React.useState(null);
   const dataFetchedRef = React.useRef(false);
   const auth = useAuth();
+  if (auth.isAuthenticated && !user) {
+    setUser({
+      display_name: auth.user?.profile.name,
+      handle: auth.user?.profile.email
+    })
+  }
 
   const loadData = async () => {
     try {
@@ -34,24 +40,12 @@ export default function HomeFeedPage() {
     }
   };
 
-  const checkAuth = async () => {
-    console.log('checkAuth')
-    // [TODO] Authenication
-    if (auth.isAuthenticated) {
-      setUser({
-        display_name: auth.user?.profile.name,
-        handle: auth.user?.profile.email
-      })
-    }
-  };
-
   React.useEffect(()=>{
     //prevents double call
     if (dataFetchedRef.current) return;
     dataFetchedRef.current = true;
 
     loadData();
-    checkAuth();
   }, [])
 
   return (

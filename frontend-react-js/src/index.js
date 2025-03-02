@@ -6,9 +6,9 @@ import reportWebVitals from './reportWebVitals';
 import { AuthProvider } from "react-oidc-context";
 
 const cognitoAuthConfig = {
-  authority: process.env.REACT_COGNITO_AUTHORITY,
-  client_id: process.env.REACT_COGNITO_CLIENT_ID,
-  redirect_uri: process.env.REACT_COGNITO_REDIRECT_URL,
+  authority: process.env.REACT_APP_COGNITO_AUTHORITY,
+  client_id: process.env.REACT_APP_COGNITO_CLIENT_ID,
+  redirect_uri: "https://3000-tatjanabezs-awsbootcamp-0qf2ad318s1.ws-eu118.gitpod.io",
   response_type: "code",
   scope: "email openid phone",
 };

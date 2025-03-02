@@ -1,7 +1,9 @@
 import './JoinSection.css';
 import { Link } from "react-router-dom";
+import { useAuth } from "react-oidc-context";
 
 export default function JoinSection(props) {
+  const auth = useAuth();
   return (
     <div className="join">
       <div className='join-title'>
@@ -20,9 +22,7 @@ export default function JoinSection(props) {
         <Link to="/signup" className="action">
           Join Now!
         </Link>
-        <Link to="/signin" className="subaction">
-          Sign In
-        </Link>
+        <button type='submit' onClick={() => {auth.signinRedirect()}}>Sign In!</button>
       </div>
     </div>
   );
