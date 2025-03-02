@@ -13,6 +13,8 @@ const cognitoAuthConfig = {
   scope: "email openid phone",
 };
 
+console.log(cognitoAuthConfig)
+
 const el_main = document.getElementsByTagName('main')[0];
 const root = ReactDOM.createRoot(el_main);
 root.render(
