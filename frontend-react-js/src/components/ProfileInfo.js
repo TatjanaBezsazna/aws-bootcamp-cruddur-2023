@@ -1,25 +1,23 @@
 import './ProfileInfo.css';
 import {ReactComponent as ElipsesIcon} from './svg/elipses.svg';
 import React from "react";
-
-// [TODO] Authenication
-import Cookies from 'js-cookie'
+import { useAuth } from "react-oidc-context";
 
 export default function ProfileInfo(props) {
   const [popped, setPopped] = React.useState(false);
   const [user, setUser] = React.useState(null);
-
+  const auth = useAuth();
+  
   const click_pop = (event) => {
     setPopped(!popped)
   }
 
-
   const signOut = () => {
     const clientId = process.env.REACT_APP_COGNITO_CLIENT_ID;
-    const logoutUri = "https://3000-tatjanabezs-awsbootcamp-8uqsd4528tg.ws-eu118.gitpod.io/notifications";
+    const logoutUri = "https://3000-tatjanabezs-awsbootcamp-8uqsd4528tg.ws-eu118.gitpod.io";
     const cognitoDomain = process.env.REACT_APP_COGNITO_DOMAIN;
     setUser(undefined)
-    //todo: clear out cookies
+    auth.removeUser()
     window.location.href = `${cognitoDomain}/logout?client_id=${clientId}&logout_uri=${encodeURIComponent(logoutUri)}`;
   };
 
