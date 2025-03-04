@@ -8,12 +8,10 @@ import { AuthProvider } from "react-oidc-context";
 const cognitoAuthConfig = {
   authority: process.env.REACT_APP_COGNITO_AUTHORITY,
   client_id: process.env.REACT_APP_COGNITO_CLIENT_ID,
-  redirect_uri: "https://3000-tatjanabezs-awsbootcamp-0qf2ad318s1.ws-eu118.gitpod.io",
+  redirect_uri: "https://3000-tatjanabezs-awsbootcamp-8uqsd4528tg.ws-eu118.gitpod.io",
   response_type: "code",
   scope: "email openid phone",
 };
-
-console.log(cognitoAuthConfig)
 
 const el_main = document.getElementsByTagName('main')[0];
 const root = ReactDOM.createRoot(el_main);
